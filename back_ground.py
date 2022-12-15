@@ -13,8 +13,8 @@ class BackGroundScene:
                 x_path="assets/x.png",
                 tick_count=30) -> None:
         self.blood_path = blood_path
-        self.width = d_width * scale
-        self.height = d_height * scale
+        self.width = round(d_width * scale)
+        self.height = round(d_height * scale)
         self.scale = scale
         self.screen = pygame.display.set_mode((self.width, self.height,))
         
@@ -86,7 +86,7 @@ class BackGroundScene:
             self.screen.blit(face, (running_x, running_y,))
             
             self.people_position.append(
-                (((running_x, running_y,), (running_x + face_x, running_y + face_y)),
+                ((((running_x), running_y,), (running_x + face_x, running_y + face_y)),
                 people[i],)
                 )
             
@@ -109,7 +109,7 @@ class BackGroundScene:
         for person_position in self.people_position:
             boundaries, person = person_position
             upper_left, lower_right = boundaries
-            if x in range(upper_left[0],lower_right[0]) and y in range(upper_left[1],lower_right[1]):
+            if x in range(round(upper_left[0]), round(lower_right[0])) and y in range(round(upper_left[1]), round(lower_right[1])):
                 self.switch_operator = person
                 self.generate_people_on_tracks()
                 return

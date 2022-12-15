@@ -10,7 +10,7 @@ class TrolleyCar:
         self.scene = scene
         self.x, self.y = scene.trolley_start
         self.image = pygame.image.load(car_path).convert()
-
+        self.image = pygame.transform.scale(self.image, (244*.5*scene.scale, 206*.5*scene.scale,))
         self.target_queue : list[TargetPoint] = []
 
 
@@ -81,8 +81,8 @@ class TrolleyCar:
         return x_iter, y_iter
 
     def is_close_to(self, tar_x, tar_y, plus_or_minus=5) -> bool:
-        return round(self.x) in range(tar_x-plus_or_minus, tar_x+plus_or_minus) \
-            and round(self.y) in range(tar_y-plus_or_minus, tar_y+plus_or_minus)
+        return round(self.x) in range(round(tar_x-plus_or_minus), round(tar_x+plus_or_minus)) \
+            and round(self.y) in range(round(tar_y-plus_or_minus), round(tar_y+plus_or_minus))
 
 class TargetPoint:
     def __init__(self, x: int, y: int, time_seconds: float = 5):

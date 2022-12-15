@@ -6,9 +6,10 @@ from people import People
 pygame.init()
 X = 1422
 Y = 744
+scale = 2
 pygame.display.set_mode((X, Y,))
 people = People()
-scene = BackGroundScene(d_width=711, d_height=372, scale=2, people=people)
+scene = BackGroundScene(d_width=711, d_height=372, scale=scale, people=people)
 scrn = scene.screen
 fpsClock = pygame.time.Clock()
 tick_count = 30
@@ -29,7 +30,7 @@ while status:
             status = False
         if e.type == pygame.KEYDOWN:
             if e.key == pygame.K_r:
-                scene = BackGroundScene(d_width=711, d_height=372, scale=2, people=people)
+                scene = BackGroundScene(d_width=711, d_height=372, scale=scale, people=people)
                 car: TrolleyCar = TrolleyCar(scene=scene)
                 scene.car = car
                 continue
